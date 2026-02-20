@@ -1,0 +1,19 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about-us/page": "app/about-us/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/doctors-blog/[slug]/page": "app/doctors-blog/[slug]/page.js",
+  "/doctors-blog/page": "app/doctors-blog/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/insurance/page": "app/insurance/page.js",
+  "/locations/page": "app/locations/page.js",
+  "/meet-our-staff/[id]/page": "app/meet-our-staff/[id]/page.js",
+  "/meet-our-staff/page": "app/meet-our-staff/page.js",
+  "/page": "app/page.js",
+  "/patient-forms/page": "app/patient-forms/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/services/page": "app/services/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js"
+}

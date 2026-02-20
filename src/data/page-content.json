@@ -1,0 +1,105 @@
+{
+  "pages": {
+    "home": {
+      "title": "American Primary Care",
+      "meta_description": "American Primary Care - Setting a Higher Standard in Healthcare. 20+ years managed care experience. Internal Medicine, Pulmonology, Chiropractic. Palm Harbor, New Port Richey, Holiday FL.",
+      "hero_slider": {
+        "note": "Original slider used RevSlider plugin. Slider images are in assets/slider-banners/",
+        "suggested_slides": [
+          {
+            "image": "nurse-caring-for-elderly.png",
+            "heading": "Complete Health Care",
+            "subheading": "20+ years of managed care experience"
+          },
+          {
+            "image": "medical-team-group.png",
+            "heading": "Meet Our Team",
+            "subheading": "4 physicians across 5 specialties"
+          },
+          {
+            "image": "nurse-with-patient-clipboard.png",
+            "heading": "Accepting New Patients",
+            "subheading": "Call (727) 771-7200 to schedule"
+          }
+        ]
+      },
+      "service_boxes": [
+        {
+          "icon": "stethoscope",
+          "title": "Complete Health Care",
+          "text": "Whether you suffer from hypertension, diabetes, coronary artery disease, or more, you'll get the care you need."
+        },
+        {
+          "icon": "spine",
+          "title": "Chiropractic Services",
+          "text": "Dr. Amar Patel's chiropractic experience can help alleviate your chronic or intermittent pain fast."
+        },
+        {
+          "icon": "clock",
+          "title": "24/7 Availability",
+          "text": "When you need help, we're available 24/7 to take your call. Your call will be returned promptly so you know what steps to take next."
+        },
+        {
+          "icon": "shield",
+          "title": "Insurance Accepted",
+          "text": "We accept over 20 insurance plans so all our patients can get the care they need. Call to find out if your plan is accepted."
+        }
+      ]
+    },
+    "about": {
+      "title": "About Us",
+      "url": "/about-us/",
+      "content": [
+        "American Primary Care boasts 20+ years of managed care experience, helping patients with diabetes, hypertension, coronary artery disease, renal disease, endocrine disorders, and more. Additionally, chiropractic services are available to alleviate chronic pain.",
+        "Dr. Sadhana Shah has been practicing medicine since 1992 and is one of the top physicians in the Tampa Bay area offering overall wellness programs. She is board certified by the American Board of Internal Medicine, the American Board of Geriatric Medicine, and the American College of Specialist in Geriatrics.",
+        "When you need urgent healthcare, you'll find it at American Primary Care — call our office and the answering service will contact your doctor for a fast response.",
+        "We have 4 convenient locations in Palm Harbor, New Port Richey, and Holiday to serve you. Our team speaks English, Russian, Spanish, and Gujarati."
+      ]
+    },
+    "meet_our_staff": {
+      "title": "Meet Our Staff",
+      "url": "/meet-our-staff/",
+      "note": "Uses 3-column grid layout. Full provider data in providers.json"
+    },
+    "insurance": {
+      "title": "Insurance",
+      "url": "/insurance/",
+      "intro_text": "We accept over 20 types of insurance from a range of carriers. Call our office at (727) 771-7200 to verify your specific plan is accepted.",
+      "note": "Full insurance list in insurance.json. Insurance logos available in assets/insurance-logos/"
+    },
+    "blog": {
+      "title": "Doctor's Blog",
+      "url": "/doctors-blog/",
+      "status": "NEEDS FRESH CONTENT - old blog was compromised with spam",
+      "original_topics": [
+        "Stress Management",
+        "National Kidney Month",
+        "Alzheimer's Awareness",
+        "Heart Disease Prevention",
+        "Obesity / Healthy Weight",
+        "Osteoporosis",
+        "Stroke Awareness Month",
+        "Flu Prevention / Vaccines",
+        "Nutrition / Healthy Eating",
+        "Autism Awareness Month",
+        "Arthritis"
+      ],
+      "note": "Blog images available in assets/blog-images/"
+    }
+  },
+  "navigation": {
+    "main_menu": [
+      { "label": "Home", "url": "/" },
+      { "label": "About Us", "url": "/about-us/" },
+      { "label": "Meet Our Staff", "url": "/meet-our-staff/" },
+      { "label": "Insurance", "url": "/insurance/" },
+      { "label": "Doctor's Blog", "url": "/doctors-blog/" }
+    ],
+    "suggested_additions": [
+      { "label": "Services", "url": "/services/" },
+      { "label": "Locations", "url": "/locations/" },
+      { "label": "Patient Forms", "url": "/patient-forms/" },
+      { "label": "Contact Us", "url": "/contact/" }
+    ]
+  }
+}

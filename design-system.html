@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>American Primary Care — Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Primary */
+    --primary-50: #E6F0FF;
+    --primary-100: #CCE0FF;
+    --primary-200: #99C2FF;
+    --primary-300: #66A3FF;
+    --primary-400: #3385FF;
+    --primary-500: #0066CC;
+    --primary-600: #0052A3;
+    --primary-700: #003D7A;
+    --primary-800: #002952;
+    --primary-900: #001429;
+
+    /* Accent Red */
+    --accent-50: #FDE8EA;
+    --accent-100: #FBD1D5;
+    --accent-200: #F7A3AB;
+    --accent-300: #F27480;
+    --accent-400: #EE4656;
+    --accent-500: #E63946;
+    --accent-600: #C42030;
+    --accent-700: #931824;
+    --accent-800: #621018;
+    --accent-900: #31080C;
+
+    /* Green / Wellness */
+    --green-50: #E6F7F1;
+    --green-500: #06A77D;
+    --green-600: #058B68;
+
+    /* Neutrals */
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-400: #9CA3AF;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+
+    /* Semantic */
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
+    --info: #3B82F6;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-lg: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--gray-800); background: #fff; line-height: 1.6; }
+
+  .ds-container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  /* Cover */
+  .ds-cover { background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%); color: #fff; padding: 80px 0; text-align: center; }
+  .ds-cover h1 { font-size: 48px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .ds-cover p { font-size: 20px; opacity: 0.85; font-weight: 300; }
+  .ds-cover .version { display: inline-block; margin-top: 24px; padding: 6px 16px; background: rgba(255,255,255,0.15); border-radius: 20px; font-size: 13px; font-weight: 500; }
+
+  /* Nav */
+  .ds-nav { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--gray-200); padding: 12px 0; }
+  .ds-nav-inner { display: flex; gap: 24px; overflow-x: auto; }
+  .ds-nav a { color: var(--gray-500); text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap; padding: 4px 0; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .ds-nav a:hover { color: var(--primary-500); border-color: var(--primary-500); }
+
+  /* Section */
+  .ds-section { padding: 64px 0; border-bottom: 1px solid var(--gray-100); }
+  .ds-section:last-child { border-bottom: none; }
+  .ds-section-title { font-size: 32px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+  .ds-section-desc { font-size: 16px; color: var(--gray-500); margin-bottom: 40px; max-width: 640px; }
+  .ds-subsection { margin-bottom: 48px; }
+  .ds-subsection-title { font-size: 20px; font-weight: 600; color: var(--gray-800); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-100); }
+  .ds-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
+
+  /* Color Swatches */
+  .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .color-card { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200); }
+  .color-swatch { height: 80px; }
+  .color-info { padding: 10px 12px; }
+  .color-name { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+  .color-hex { font-size: 12px; color: var(--gray-500); font-family: 'SF Mono', 'Fira Code', monospace; }
+
+  /* Typography */
+  .type-row { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--gray-100); }
+  .type-meta { min-width: 160px; flex-shrink: 0; }
+  .type-meta .name { font-size: 14px; font-weight: 600; color: var(--primary-500); }
+  .type-meta .specs { font-size: 12px; color: var(--gray-400); font-family: monospace; }
+  .type-sample { flex: 1; }
+
+  /* Spacing */
+  .spacing-row { display: flex; align-items: center; gap: 16px; padding: 8px 0; }
+  .spacing-bar { background: var(--primary-100); border-radius: 4px; height: 24px; transition: width 0.3s; }
+  .spacing-label { min-width: 60px; font-size: 13px; font-weight: 600; color: var(--gray-700); }
+  .spacing-value { font-size: 12px; color: var(--gray-400); font-family: monospace; min-width: 60px; }
+
+  /* Components */
+  .comp-showcase { background: var(--gray-50); border-radius: 12px; padding: 32px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .comp-code { background: var(--gray-900); color: #e5e7eb; border-radius: 8px; padding: 16px 20px; font-size: 13px; font-family: 'SF Mono', 'Fira Code', monospace; overflow-x: auto; margin-bottom: 24px; line-height: 1.8; }
+  .comp-code .tag { color: #f87171; }
+  .comp-code .attr { color: #a78bfa; }
+  .comp-code .val { color: #34d399; }
+  .comp-code .cmt { color: #6b7280; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; font-family: inherit; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: all 0.2s; min-height: 44px; padding: 10px 24px; font-size: 15px; text-decoration: none; }
+  .btn-sm { min-height: 36px; padding: 6px 16px; font-size: 13px; }
+  .btn-lg { min-height: 52px; padding: 14px 32px; font-size: 17px; }
+  .btn-primary { background: var(--primary-500); color: #fff; }
+  .btn-primary:hover { background: var(--primary-600); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: #fff; color: var(--gray-700); border: 1px solid var(--gray-300); }
+  .btn-secondary:hover { background: var(--gray-50); border-color: var(--gray-400); }
+  .btn-accent { background: var(--accent-500); color: #fff; }
+  .btn-accent:hover { background: var(--accent-600); }
+  .btn-ghost { background: transparent; color: var(--primary-500); }
+  .btn-ghost:hover { background: var(--primary-50); }
+
+  /* Cards */
+  .card { background: #fff; border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; box-shadow: var(--shadow-sm); transition: all 0.2s; }
+  .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .card-title { font-size: 18px; font-weight: 600; color: var(--gray-900); margin-bottom: 8px; }
+  .card-desc { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+
+  /* Form Elements */
+  .form-group { margin-bottom: 20px; }
+  .form-label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
+  .form-label .required { color: var(--accent-500); }
+  .form-input { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 15px; font-family: inherit; color: var(--gray-800); transition: all 0.2s; background: #fff; min-height: 44px; }
+  .form-input:focus { outline: none; border-color: var(--primary-500); box-shadow: 0 0 0 3px var(--primary-50); }
+  .form-input::placeholder { color: var(--gray-400); }
+  .form-input.error { border-color: var(--error); }
+  .form-help { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+  .form-error { font-size: 12px; color: var(--error); margin-top: 4px; }
+  .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+
+  /* Provider Card */
+  .provider-card { display: flex; gap: 20px; background: #fff; border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; transition: all 0.2s; }
+  .provider-card:hover { box-shadow: var(--shadow-lg); }
+  .provider-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--primary-50); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; color: var(--primary-500); flex-shrink: 0; overflow: hidden; }
+  .provider-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .provider-name { font-size: 18px; font-weight: 700; color: var(--gray-900); }
+  .provider-specialty { font-size: 14px; color: var(--primary-500); font-weight: 500; margin-bottom: 8px; }
+  .provider-bio { font-size: 14px; color: var(--gray-500); line-height: 1.5; margin-bottom: 12px; }
+
+  /* Badge */
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .badge-primary { background: var(--primary-50); color: var(--primary-600); }
+  .badge-green { background: var(--green-50); color: var(--green-600); }
+  .badge-accent { background: var(--accent-50); color: var(--accent-600); }
+
+  /* Nav Demo */
+  .nav-demo { background: #fff; border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; }
+  .nav-demo-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--gray-100); }
+  .nav-demo-logo { font-size: 18px; font-weight: 800; color: var(--accent-500); }
+  .nav-demo-logo span { color: var(--gray-900); }
+  .nav-demo-links { display: flex; gap: 24px; }
+  .nav-demo-links a { font-size: 14px; font-weight: 500; color: var(--gray-600); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav-demo-links a.active { color: var(--primary-500); border-color: var(--primary-500); }
+  .nav-demo-links a:hover { color: var(--primary-500); }
+  .nav-demo-actions { display: flex; gap: 12px; align-items: center; }
+  .nav-demo-portal { font-size: 13px; color: var(--gray-500); text-decoration: none; font-weight: 500; }
+  .nav-demo-portal:hover { color: var(--primary-500); }
+
+  /* Footer Demo */
+  .footer-demo { background: var(--gray-900); border-radius: 12px; padding: 40px 32px; color: var(--gray-300); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+  .footer-col-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+  .footer-link { display: block; font-size: 13px; color: var(--gray-400); text-decoration: none; padding: 3px 0; }
+  .footer-link:hover { color: #fff; }
+  .footer-bottom { border-top: 1px solid var(--gray-700); padding-top: 20px; font-size: 12px; color: var(--gray-500); }
+
+  /* Tokens Table */
+  .token-table { width: 100%; border-collapse: collapse; }
+  .token-table th { text-align: left; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-400); padding: 8px 12px; border-bottom: 2px solid var(--gray-200); }
+  .token-table td { padding: 10px 12px; font-size: 14px; border-bottom: 1px solid var(--gray-100); }
+  .token-table td:first-child { font-family: monospace; font-size: 13px; color: var(--primary-600); font-weight: 500; }
+
+  @media (max-width: 768px) {
+    .ds-cover h1 { font-size: 32px; }
+    .color-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    .type-row { flex-direction: column; gap: 8px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .provider-card { flex-direction: column; }
+    .nav-demo-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="ds-cover">
+  <div class="ds-container">
+    <h1>American Primary Care</h1>
+    <p>Design System & Visual Guidelines</p>
+    <span class="version">v1.0 — February 2026</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<div class="ds-nav">
+  <div class="ds-container">
+    <div class="ds-nav-inner">
+      <a href="#colors">Colors</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#cards">Cards</a>
+      <a href="#forms">Forms</a>
+      <a href="#navigation">Navigation</a>
+      <a href="#providers">Provider Cards</a>
+      <a href="#footer">Footer</a>
+      <a href="#tokens">Design Tokens</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COLORS ============ -->
+<div class="ds-section" id="colors">
+  <div class="ds-container">
+    <div class="ds-section-title">Color Palette</div>
+    <div class="ds-section-desc">Our palette conveys trust, professionalism, and care. Blue is our primary brand color; red is our accent, drawn from the logo's cross.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Primary Blue</div>
+      <div class="color-grid">
+        <div class="color-card"><div class="color-swatch" style="background:#E6F0FF"></div><div class="color-info"><div class="color-name">50</div><div class="color-hex">#E6F0FF</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#CCE0FF"></div><div class="color-info"><div class="color-name">100</div><div class="color-hex">#CCE0FF</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#99C2FF"></div><div class="color-info"><div class="color-name">200</div><div class="color-hex">#99C2FF</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#66A3FF"></div><div class="color-info"><div class="color-name">300</div><div class="color-hex">#66A3FF</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#3385FF"></div><div class="color-info"><div class="color-name">400</div><div class="color-hex">#3385FF</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#0066CC"></div><div class="color-info"><div class="color-name">500 ★</div><div class="color-hex">#0066CC</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#0052A3"></div><div class="color-info"><div class="color-name">600</div><div class="color-hex">#0052A3</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#003D7A"></div><div class="color-info"><div class="color-name">700</div><div class="color-hex">#003D7A</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#002952"></div><div class="color-info"><div class="color-name">800</div><div class="color-hex">#002952</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#001429; border:1px solid #333"></div><div class="color-info"><div class="color-name">900</div><div class="color-hex">#001429</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Accent Red</div>
+      <div class="color-grid">
+        <div class="color-card"><div class="color-swatch" style="background:#FDE8EA"></div><div class="color-info"><div class="color-name">50</div><div class="color-hex">#FDE8EA</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#F7A3AB"></div><div class="color-info"><div class="color-name">200</div><div class="color-hex">#F7A3AB</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#E63946"></div><div class="color-info"><div class="color-name">500 ★</div><div class="color-hex">#E63946</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#C42030"></div><div class="color-info"><div class="color-name">600</div><div class="color-hex">#C42030</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#931824"></div><div class="color-info"><div class="color-name">700</div><div class="color-hex">#931824</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Neutrals</div>
+      <div class="color-grid">
+        <div class="color-card"><div class="color-swatch" style="background:#F9FAFB"></div><div class="color-info"><div class="color-name">50</div><div class="color-hex">#F9FAFB</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#F3F4F6"></div><div class="color-info"><div class="color-name">100</div><div class="color-hex">#F3F4F6</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#E5E7EB"></div><div class="color-info"><div class="color-name">200</div><div class="color-hex">#E5E7EB</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#D1D5DB"></div><div class="color-info"><div class="color-name">300</div><div class="color-hex">#D1D5DB</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#9CA3AF"></div><div class="color-info"><div class="color-name">400</div><div class="color-hex">#9CA3AF</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#6B7280"></div><div class="color-info"><div class="color-name">500</div><div class="color-hex">#6B7280</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#4B5563"></div><div class="color-info"><div class="color-name">600</div><div class="color-hex">#4B5563</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#374151; border:1px solid #555"></div><div class="color-info"><div class="color-name">700</div><div class="color-hex">#374151</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#1F2937; border:1px solid #444"></div><div class="color-info"><div class="color-name">800</div><div class="color-hex">#1F2937</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#111827; border:1px solid #333"></div><div class="color-info"><div class="color-name">900</div><div class="color-hex">#111827</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Semantic</div>
+      <div class="color-grid">
+        <div class="color-card"><div class="color-swatch" style="background:#10B981"></div><div class="color-info"><div class="color-name">Success</div><div class="color-hex">#10B981</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#F59E0B"></div><div class="color-info"><div class="color-name">Warning</div><div class="color-hex">#F59E0B</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#EF4444"></div><div class="color-info"><div class="color-name">Error</div><div class="color-hex">#EF4444</div></div></div>
+        <div class="color-card"><div class="color-swatch" style="background:#3B82F6"></div><div class="color-info"><div class="color-name">Info</div><div class="color-hex">#3B82F6</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TYPOGRAPHY ============ -->
+<div class="ds-section" id="typography">
+  <div class="ds-container">
+    <div class="ds-section-title">Typography</div>
+    <div class="ds-section-desc">Inter is our primary typeface — clean, modern, and highly readable across all sizes. We use a modular scale for consistency.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Type Scale</div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">Display</div><div class="specs">48px / 800 / -1px</div></div>
+        <div class="type-sample" style="font-size:48px;font-weight:800;letter-spacing:-1px;line-height:1.1;color:var(--gray-900)">Primary Care</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">H1</div><div class="specs">36px / 700 / -0.5px</div></div>
+        <div class="type-sample" style="font-size:36px;font-weight:700;letter-spacing:-0.5px;color:var(--gray-900)">Meet Our Physicians</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">H2</div><div class="specs">30px / 700</div></div>
+        <div class="type-sample" style="font-size:30px;font-weight:700;color:var(--gray-900)">Our Services</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">H3</div><div class="specs">24px / 600</div></div>
+        <div class="type-sample" style="font-size:24px;font-weight:600;color:var(--gray-900)">Internal Medicine</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">H4</div><div class="specs">20px / 600</div></div>
+        <div class="type-sample" style="font-size:20px;font-weight:600;color:var(--gray-900)">Dr. Sadhana Shah, MD</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">Body Large</div><div class="specs">18px / 400 / 1.75</div></div>
+        <div class="type-sample" style="font-size:18px;font-weight:400;line-height:1.75;color:var(--gray-600)">American Primary Care boasts 20+ years of managed care experience, helping patients with diabetes, hypertension, and more.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">Body</div><div class="specs">16px / 400 / 1.6</div></div>
+        <div class="type-sample" style="font-size:16px;font-weight:400;line-height:1.6;color:var(--gray-600)">Whether you suffer from hypertension, diabetes, coronary artery disease, or more, you'll get the care you need at our practice.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">Body Small</div><div class="specs">14px / 400 / 1.5</div></div>
+        <div class="type-sample" style="font-size:14px;font-weight:400;line-height:1.5;color:var(--gray-500)">Board Certified: American Board of Internal Medicine</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">Caption</div><div class="specs">12px / 500 / 1.4</div></div>
+        <div class="type-sample" style="font-size:12px;font-weight:500;line-height:1.4;color:var(--gray-400)">NPI: 1194755439 · ACCEPTING NEW PATIENTS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SPACING ============ -->
+<div class="ds-section" id="spacing">
+  <div class="ds-container">
+    <div class="ds-section-title">Spacing</div>
+    <div class="ds-section-desc">Based on an 8px grid for consistent rhythm across all components and layouts.</div>
+    <div class="ds-subsection">
+      <div class="spacing-row"><div class="spacing-label">2xs</div><div class="spacing-bar" style="width:4px"></div><div class="spacing-value">4px</div></div>
+      <div class="spacing-row"><div class="spacing-label">xs</div><div class="spacing-bar" style="width:8px"></div><div class="spacing-value">8px</div></div>
+      <div class="spacing-row"><div class="spacing-label">sm</div><div class="spacing-bar" style="width:12px"></div><div class="spacing-value">12px</div></div>
+      <div class="spacing-row"><div class="spacing-label">md</div><div class="spacing-bar" style="width:16px"></div><div class="spacing-value">16px</div></div>
+      <div class="spacing-row"><div class="spacing-label">lg</div><div class="spacing-bar" style="width:24px"></div><div class="spacing-value">24px</div></div>
+      <div class="spacing-row"><div class="spacing-label">xl</div><div class="spacing-bar" style="width:32px"></div><div class="spacing-value">32px</div></div>
+      <div class="spacing-row"><div class="spacing-label">2xl</div><div class="spacing-bar" style="width:40px"></div><div class="spacing-value">40px</div></div>
+      <div class="spacing-row"><div class="spacing-label">3xl</div><div class="spacing-bar" style="width:48px"></div><div class="spacing-value">48px</div></div>
+      <div class="spacing-row"><div class="spacing-label">4xl</div><div class="spacing-bar" style="width:56px"></div><div class="spacing-value">56px</div></div>
+      <div class="spacing-row"><div class="spacing-label">5xl</div><div class="spacing-bar" style="width:64px"></div><div class="spacing-value">64px</div></div>
+      <div class="spacing-row"><div class="spacing-label">6xl</div><div class="spacing-bar" style="width:80px"></div><div class="spacing-value">80px</div></div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Usage Guidelines</div>
+      <table class="token-table">
+        <thead><tr><th>Context</th><th>Token</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Component internal padding</td><td>md – lg</td><td>16–24px</td></tr>
+          <tr><td>Between related elements</td><td>xs – sm</td><td>8–12px</td></tr>
+          <tr><td>Between sections</td><td>4xl – 6xl</td><td>56–80px</td></tr>
+          <tr><td>Page top/bottom padding</td><td>5xl – 6xl</td><td>64–80px</td></tr>
+          <tr><td>Card content padding</td><td>lg</td><td>24px</td></tr>
+          <tr><td>Form field gap</td><td>md</td><td>16px</td></tr>
+          <tr><td>Grid gap (cards)</td><td>lg – xl</td><td>24–32px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BUTTONS ============ -->
+<div class="ds-section" id="buttons">
+  <div class="ds-container">
+    <div class="ds-section-title">Buttons</div>
+    <div class="ds-section-desc">Four variants, three sizes. All buttons have a 44px minimum touch target for accessibility.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Variants</div>
+      <div class="comp-showcase">
+        <button class="btn btn-primary">Request Appointment</button>
+        <button class="btn btn-secondary">Learn More</button>
+        <button class="btn btn-accent">Call Now</button>
+        <button class="btn btn-ghost">View Profile →</button>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Sizes</div>
+      <div class="comp-showcase">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Button Specs</div>
+      <table class="token-table">
+        <thead><tr><th>Property</th><th>Small</th><th>Default</th><th>Large</th></tr></thead>
+        <tbody>
+          <tr><td>min-height</td><td>36px</td><td>44px</td><td>52px</td></tr>
+          <tr><td>padding</td><td>6px 16px</td><td>10px 24px</td><td>14px 32px</td></tr>
+          <tr><td>font-size</td><td>13px</td><td>15px</td><td>17px</td></tr>
+          <tr><td>font-weight</td><td>600</td><td>600</td><td>600</td></tr>
+          <tr><td>border-radius</td><td>6px</td><td>6px</td><td>6px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CARDS ============ -->
+<div class="ds-section" id="cards">
+  <div class="ds-container">
+    <div class="ds-section-title">Cards</div>
+    <div class="ds-section-desc">Cards are the primary content container. They elevate on hover to indicate interactivity.</div>
+    <div class="comp-showcase" style="align-items:stretch;">
+      <div class="card" style="flex:1;min-width:200px;">
+        <div style="font-size:32px;margin-bottom:12px;">🩺</div>
+        <div class="card-title">Complete Health Care</div>
+        <div class="card-desc">Whether you suffer from hypertension, diabetes, or coronary artery disease, you'll get the care you need.</div>
+      </div>
+      <div class="card" style="flex:1;min-width:200px;">
+        <div style="font-size:32px;margin-bottom:12px;">🦴</div>
+        <div class="card-title">Chiropractic Services</div>
+        <div class="card-desc">Dr. Amar Patel's chiropractic experience can help alleviate your chronic or intermittent pain fast.</div>
+      </div>
+      <div class="card" style="flex:1;min-width:200px;">
+        <div style="font-size:32px;margin-bottom:12px;">📋</div>
+        <div class="card-title">Insurance Accepted</div>
+        <div class="card-desc">We accept over 20 insurance plans so all patients can get the care they need.</div>
+      </div>
+    </div>
+    <table class="token-table">
+      <thead><tr><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>border-radius</td><td>12px</td></tr>
+        <tr><td>padding</td><td>24px</td></tr>
+        <tr><td>border</td><td>1px solid #E5E7EB</td></tr>
+        <tr><td>shadow (rest)</td><td>0 1px 2px rgba(0,0,0,0.05)</td></tr>
+        <tr><td>shadow (hover)</td><td>0 4px 6px rgba(0,0,0,0.1)</td></tr>
+        <tr><td>hover transform</td><td>translateY(-2px)</td></tr>
+        <tr><td>transition</td><td>all 200ms ease</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ FORMS ============ -->
+<div class="ds-section" id="forms">
+  <div class="ds-container">
+    <div class="ds-section-title">Form Elements</div>
+    <div class="ds-section-desc">Accessible, HIPAA-aware form components with clear labels, inline validation, and proper error states.</div>
+    <div class="comp-showcase" style="flex-direction:column;align-items:stretch;max-width:480px;">
+      <div class="form-group">
+        <label class="form-label">Full Name <span class="required">*</span></label>
+        <input class="form-input" type="text" placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address <span class="required">*</span></label>
+        <input class="form-input error" type="email" value="invalid-email">
+        <div class="form-error">Please enter a valid email address</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Preferred Provider</label>
+        <select class="form-input form-select">
+          <option>Select a provider...</option>
+          <option>Dr. Sadhana Shah, MD</option>
+          <option>Dr. Varun Bhaskar, MD</option>
+          <option>Dr. Amar Patel, DC</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input class="form-input" type="tel" placeholder="(727) 000-0000">
+        <div class="form-help">We'll only use this to confirm your appointment</div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;">Request Appointment</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAVIGATION ============ -->
+<div class="ds-section" id="navigation">
+  <div class="ds-container">
+    <div class="ds-section-title">Navigation</div>
+    <div class="ds-section-desc">Clean, minimal header with logo, page links, patient portal access, and a prominent appointment CTA.</div>
+    <div class="nav-demo">
+      <div class="nav-demo-header">
+        <div class="nav-demo-logo"><span>American</span> Primary Care</div>
+        <div class="nav-demo-links">
+          <a href="#" class="active">Home</a>
+          <a href="#">About</a>
+          <a href="#">Staff</a>
+          <a href="#">Services</a>
+          <a href="#">Locations</a>
+          <a href="#">Insurance</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="nav-demo-actions">
+          <a href="#" class="nav-demo-portal">Patient Portal</a>
+          <button class="btn btn-primary btn-sm">Book Appointment</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:16px;background:var(--gray-50);border-radius:8px;font-size:14px;color:var(--gray-600);">
+      <strong>Mobile:</strong> Nav links collapse into hamburger menu. "Book Appointment" CTA remains visible. Phone number becomes click-to-call.
+    </div>
+  </div>
+</div>
+
+<!-- ============ PROVIDER CARDS ============ -->
+<div class="ds-section" id="providers">
+  <div class="ds-container">
+    <div class="ds-section-title">Provider Cards</div>
+    <div class="ds-section-desc">Used on the Meet Our Staff page. Shows photo (or initials placeholder), name, credentials, specialty, and brief bio.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;">
+      <div class="provider-card">
+        <div class="provider-avatar">SS</div>
+        <div>
+          <div class="provider-name">Dr. Sadhana Shah, MD</div>
+          <div class="provider-specialty">Internal Medicine · Geriatrics</div>
+          <div class="provider-bio">Board certified with 30+ years experience. Offers comprehensive wellness programs.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-primary">Internal Medicine</span>
+            <span class="badge badge-green">Accepting Patients</span>
+          </div>
+        </div>
+      </div>
+      <div class="provider-card">
+        <div class="provider-avatar">AP</div>
+        <div>
+          <div class="provider-name">Dr. Amar Patel, DC</div>
+          <div class="provider-specialty">Chiropractic</div>
+          <div class="provider-bio">Whole-person approach to pain relief. Diversified and Activator adjustment methods.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-accent">Chiropractic</span>
+            <span class="badge badge-green">Accepting Patients</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="ds-section" id="footer">
+  <div class="ds-container">
+    <div class="ds-section-title">Footer</div>
+    <div class="ds-section-desc">Dark footer with 4-column layout: practice info, quick links, services, and contact details.</div>
+    <div class="footer-demo">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-col-title" style="font-size:18px;">American Primary Care</div>
+          <p style="font-size:13px;color:var(--gray-400);line-height:1.6;margin-top:8px;">Setting a Higher Standard in Healthcare. 20+ years of managed care experience serving the Tampa Bay area.</p>
+          <div style="margin-top:12px;">
+            <span class="badge badge-green" style="font-size:11px;">Accepting New Patients</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <a href="#" class="footer-link">About Us</a>
+          <a href="#" class="footer-link">Meet Our Staff</a>
+          <a href="#" class="footer-link">Services</a>
+          <a href="#" class="footer-link">Insurance</a>
+          <a href="#" class="footer-link">Patient Forms</a>
+          <a href="#" class="footer-link">Contact Us</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <a href="#" class="footer-link">Internal Medicine</a>
+          <a href="#" class="footer-link">Pulmonology</a>
+          <a href="#" class="footer-link">Chiropractic</a>
+          <a href="#" class="footer-link">Cosmetic Services</a>
+          <a href="#" class="footer-link">Geriatric Care</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <a href="tel:7277717200" class="footer-link" style="font-weight:600;color:#fff;">(727) 771-7200</a>
+          <a href="#" class="footer-link">Fax: (727) 216-1396</a>
+          <div style="margin-top:12px;font-size:13px;color:var(--gray-400);">
+            2855 Alt 19<br>Palm Harbor, FL 34683
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:var(--gray-500);">
+            Mon–Fri: 9:00 AM – 5:00 PM
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 American Primary Care, Inc. All rights reserved. &nbsp;|&nbsp; Privacy Policy &nbsp;|&nbsp; HIPAA Notice &nbsp;|&nbsp; NPI: 1194755439
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DESIGN TOKENS ============ -->
+<div class="ds-section" id="tokens">
+  <div class="ds-container">
+    <div class="ds-section-title">Design Tokens (Tailwind Config)</div>
+    <div class="ds-section-desc">Copy these tokens directly into tailwind.config.ts to implement the design system.</div>
+    <div class="comp-code"><span class="cmt">// tailwind.config.ts — theme.extend</span>
+{
+  <span class="attr">colors</span>: {
+    <span class="attr">primary</span>: {
+      <span class="val">50</span>: <span class="val">'#E6F0FF'</span>, <span class="val">100</span>: <span class="val">'#CCE0FF'</span>, <span class="val">200</span>: <span class="val">'#99C2FF'</span>,
+      <span class="val">300</span>: <span class="val">'#66A3FF'</span>, <span class="val">400</span>: <span class="val">'#3385FF'</span>, <span class="val">500</span>: <span class="val">'#0066CC'</span>,
+      <span class="val">600</span>: <span class="val">'#0052A3'</span>, <span class="val">700</span>: <span class="val">'#003D7A'</span>, <span class="val">800</span>: <span class="val">'#002952'</span>, <span class="val">900</span>: <span class="val">'#001429'</span>,
+    },
+    <span class="attr">accent</span>: {
+      <span class="val">50</span>: <span class="val">'#FDE8EA'</span>, <span class="val">200</span>: <span class="val">'#F7A3AB'</span>, <span class="val">500</span>: <span class="val">'#E63946'</span>,
+      <span class="val">600</span>: <span class="val">'#C42030'</span>, <span class="val">700</span>: <span class="val">'#931824'</span>,
+    },
+    <span class="attr">success</span>: <span class="val">'#10B981'</span>,
+    <span class="attr">warning</span>: <span class="val">'#F59E0B'</span>,
+    <span class="attr">error</span>: <span class="val">'#EF4444'</span>,
+  },
+  <span class="attr">fontFamily</span>: {
+    <span class="attr">sans</span>: [<span class="val">'Inter'</span>, <span class="val">'system-ui'</span>, <span class="val">'sans-serif'</span>],
+  },
+  <span class="attr">fontSize</span>: {
+    <span class="val">'display'</span>: [<span class="val">'3rem'</span>, { lineHeight: <span class="val">'1.1'</span>, fontWeight: <span class="val">'800'</span>, letterSpacing: <span class="val">'-0.02em'</span> }],
+    <span class="val">'h1'</span>: [<span class="val">'2.25rem'</span>, { lineHeight: <span class="val">'1.2'</span>, fontWeight: <span class="val">'700'</span>, letterSpacing: <span class="val">'-0.01em'</span> }],
+    <span class="val">'h2'</span>: [<span class="val">'1.875rem'</span>, { lineHeight: <span class="val">'1.3'</span>, fontWeight: <span class="val">'700'</span> }],
+    <span class="val">'h3'</span>: [<span class="val">'1.5rem'</span>, { lineHeight: <span class="val">'1.4'</span>, fontWeight: <span class="val">'600'</span> }],
+    <span class="val">'h4'</span>: [<span class="val">'1.25rem'</span>, { lineHeight: <span class="val">'1.5'</span>, fontWeight: <span class="val">'600'</span> }],
+    <span class="val">'body-lg'</span>: [<span class="val">'1.125rem'</span>, { lineHeight: <span class="val">'1.75'</span> }],
+    <span class="val">'body'</span>: [<span class="val">'1rem'</span>, { lineHeight: <span class="val">'1.6'</span> }],
+    <span class="val">'body-sm'</span>: [<span class="val">'0.875rem'</span>, { lineHeight: <span class="val">'1.5'</span> }],
+    <span class="val">'caption'</span>: [<span class="val">'0.75rem'</span>, { lineHeight: <span class="val">'1.4'</span> }],
+  },
+  <span class="attr">borderRadius</span>: {
+    <span class="val">'card'</span>: <span class="val">'12px'</span>,
+    <span class="val">'button'</span>: <span class="val">'6px'</span>,
+    <span class="val">'input'</span>: <span class="val">'6px'</span>,
+    <span class="val">'badge'</span>: <span class="val">'20px'</span>,
+  },
+  <span class="attr">boxShadow</span>: {
+    <span class="val">'card'</span>: <span class="val">'0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)'</span>,
+    <span class="val">'card-hover'</span>: <span class="val">'0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)'</span>,
+    <span class="val">'modal'</span>: <span class="val">'0 20px 25px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.1)'</span>,
+  },
+}</div>
+  </div>
+</div>
+
+</body>
+</html>

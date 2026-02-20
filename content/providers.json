@@ -1,0 +1,129 @@
+{
+  "providers": [
+    {
+      "name": "Dr. Sadhana A. Shah",
+      "credentials": "MD",
+      "photo": "../assets/staff-photos/dr-sadhana-shah.jpg",
+      "specialty": ["Internal Medicine", "Geriatric Medicine"],
+      "title": "Physician / Practice Lead",
+      "practicing_since": 1992,
+      "education": {
+        "medical_school": "Topiwala National Medical College, University of Bombay, India",
+        "graduation_year": 1985
+      },
+      "board_certifications": [
+        "American Board of Internal Medicine",
+        "American Board of Geriatric Medicine",
+        "American College of Specialist in Geriatrics"
+      ],
+      "fellowships": [
+        "Fellow, American College of Ethical Physician",
+        "Fellow, American College of Specialist in Geriatrics",
+        "Diplomat, American Board of Geriatric Medicine"
+      ],
+      "hospital_affiliations": ["HCA Florida Trinity Hospital"],
+      "locations": ["Palm Harbor - Main Office", "New Port Richey"],
+      "services": [
+        "Overall wellness programs",
+        "Diabetes management",
+        "Hypertension treatment",
+        "Coronary artery disease",
+        "Renal disease management",
+        "Endocrine disorders",
+        "Geriatric care"
+      ],
+      "bio": "Dr. Sadhana Shah has been practicing medicine since 1992 and is one of the top physicians in the Tampa Bay area offering overall wellness programs. With 20+ years of managed care experience, she provides comprehensive care for patients with diabetes, hypertension, coronary artery disease, renal disease, endocrine disorders, and more. She is board certified by the American Board of Internal Medicine, the American Board of Geriatric Medicine, and the American College of Specialist in Geriatrics.",
+      "patient_quote": "Dr Shah is great, easy getting an appt, really understanding and was great discussing a treatment plan."
+    },
+    {
+      "name": "Dr. Varun Bhaskar",
+      "credentials": "MD",
+      "photo": null,
+      "specialty": ["Pulmonary Disease", "Critical Care Medicine", "Sleep Medicine"],
+      "title": "Pulmonologist",
+      "experience_years": "40+",
+      "education": {
+        "medical_school": "Guru Nanak Dev University / Medical College",
+        "graduation_year": 1984
+      },
+      "board_certifications": ["Pulmonary Disease"],
+      "hospital_affiliations": [
+        "Morton Plant Hospital Clearwater",
+        "Mease Dunedin Hospital",
+        "Mease Countryside Hospital"
+      ],
+      "locations": ["Palm Harbor - Main Office"],
+      "services": [
+        "Obstructive Lung Disease",
+        "Pleural Effusion",
+        "Respiratory Failure",
+        "Sleep Medicine",
+        "Critical Care Medicine"
+      ],
+      "telehealth": true,
+      "bio": "Dr. Varun Bhaskar is a pulmonologist with over 40 years of experience in the medical field. He has extensive experience treating Obstructive Lung Disease, Pleural Effusion, and Respiratory Failure. He graduated from Guru Nanak Dev University Medical College in 1984 and is affiliated with Morton Plant Hospital Clearwater.",
+      "patient_quote": "Dr. Varun Bhaskar is very professional, attentive and gives the impression to be trustworthy. He takes the time to listen and discuss health conditions in a clear manner.",
+      "rating": { "score": 3.3, "out_of": 5, "reviews": 9, "source": "Healthgrades" }
+    },
+    {
+      "name": "Dr. Amar G. Patel",
+      "credentials": "DC",
+      "photo": "../assets/staff-photos/dr-amar-patel.jpg",
+      "specialty": ["Chiropractic"],
+      "title": "Chiropractor",
+      "npi": "1255486098",
+      "licensed_since": 2004,
+      "practicing_since": 2007,
+      "education": {
+        "chiropractic_school": "Parker College of Chiropractic, Dallas, TX",
+        "graduation_year": 2003,
+        "undergraduate": "Montclair State University, B.S. Biology"
+      },
+      "languages": ["English", "Gujarati"],
+      "adjustment_methods": [
+        {
+          "name": "Diversified",
+          "description": "The most common type of chiropractic adjustment. Dr. Patel has been called a 'gentle' and 'pain free' adjustor by many patients."
+        },
+        {
+          "name": "Activator Method",
+          "description": "A gentle method of adjusting that uses a specific instrument to ease nerve interference."
+        }
+      ],
+      "treatment_approach": "Dr. Patel takes a 'whole person' approach in chiropractic care, looking for the underlying causes of disease, discomfort, and pain, as opposed to just treating the symptoms.",
+      "locations": ["New Port Richey"],
+      "also_known_as": "Palm Harbor Spine Center (palmharborspine.com)",
+      "services": [
+        "Chiropractic adjustments",
+        "Physical therapy",
+        "Therapeutic massage",
+        "Non-surgical spinal decompression",
+        "Muscle stimulation",
+        "Myofascial release",
+        "Ultrasound therapy",
+        "Trigger point therapy",
+        "Back pain relief",
+        "Chronic pain management"
+      ],
+      "bio": "Dr. Amar Patel has been a licensed Chiropractor since 2004 and has been freeing people from pain since 2007 in clinics in Palm Harbor and New Port Richey. He earned his Doctorate of Chiropractic from Parker College of Chiropractic in Dallas, TX and holds a B.S. in Biology from Montclair State University. Dr. Patel takes a 'whole person' approach, looking for the underlying causes of disease, discomfort, and pain."
+    },
+    {
+      "name": "Dr. McGaha",
+      "credentials": "MD",
+      "photo": null,
+      "specialty": ["Family Medicine"],
+      "title": "Family Medicine Physician",
+      "locations": ["Holiday"],
+      "bio": "Dr. McGaha provides family medicine services at the Holiday, FL location."
+    },
+    {
+      "name": "Christina Tomasino",
+      "credentials": "PA-C",
+      "photo": null,
+      "specialty": ["Physician Assistant"],
+      "title": "Physician Assistant",
+      "locations": ["Palm Harbor - Tampa Rd"],
+      "bio": "Christina Tomasino, PA-C provides physician assistant services at the Palm Harbor Tampa Rd location."
+    }
+  ]
+}

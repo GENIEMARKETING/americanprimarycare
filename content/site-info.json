@@ -1,0 +1,75 @@
+{
+  "practice": {
+    "name": "American Primary Care, Inc.",
+    "tagline": "SETTING A HIGHER STANDARD IN HEALTHCARE",
+    "npi": "1194755439",
+    "npi_active_since": "2006-07-03",
+    "phone_main": "(727) 771-7200",
+    "fax": "(727) 216-1396",
+    "website": "americanprimarycare.com",
+    "specialties": [
+      "Internal Medicine",
+      "Pulmonology",
+      "Critical Care Medicine",
+      "Chiropractic",
+      "Physician Assistant / Nurse Practitioner"
+    ],
+    "languages": ["English", "Russian", "Spanish", "Gujarati"],
+    "hours": {
+      "monday": "9:00 AM - 5:00 PM",
+      "tuesday": "9:00 AM - 5:00 PM",
+      "wednesday": "9:00 AM - 5:00 PM",
+      "thursday": "9:00 AM - 5:00 PM",
+      "friday": "9:00 AM - 5:00 PM",
+      "saturday": "Closed",
+      "sunday": "Closed"
+    },
+    "accepting_new_patients": true,
+    "telehealth_available": true,
+    "emergency_note": "24/7 availability — call returned promptly",
+    "medicare_note": "Medicare patients encouraged to visit every 6 months"
+  },
+  "locations": [
+    {
+      "name": "Palm Harbor - Main Office",
+      "address": "2855 Alt 19",
+      "city": "Palm Harbor",
+      "state": "FL",
+      "zip": "34683",
+      "phone": "(727) 771-7200",
+      "fax": "(727) 216-1396",
+      "is_primary": true,
+      "providers": ["Dr. Sadhana Shah", "Dr. Varun Bhaskar"]
+    },
+    {
+      "name": "Palm Harbor - Tampa Rd",
+      "address": "2595 Tampa Rd, Ste P",
+      "city": "Palm Harbor",
+      "state": "FL",
+      "zip": "34684",
+      "phone": "(727) 771-7200",
+      "is_primary": false,
+      "providers": ["Christina Tomasino, PA-C"]
+    },
+    {
+      "name": "New Port Richey",
+      "address": "5307 Main St, Ste 104",
+      "city": "New Port Richey",
+      "state": "FL",
+      "zip": "34652",
+      "phone": "(727) 771-7200",
+      "is_primary": false,
+      "providers": ["Dr. Sadhana Shah", "Dr. Amar Patel"]
+    },
+    {
+      "name": "Holiday",
+      "address": "4553 Mile Stretch Dr",
+      "city": "Holiday",
+      "state": "FL",
+      "zip": "34690",
+      "phone": "(727) 937-0229",
+      "is_primary": false,
+      "providers": ["Dr. McGaha"]
+    }
+  ]
+}

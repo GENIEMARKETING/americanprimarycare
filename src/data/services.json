@@ -1,0 +1,69 @@
+{
+  "service_categories": [
+    {
+      "category": "Internal Medicine & Primary Care",
+      "icon": "stethoscope",
+      "homepage_box": {
+        "title": "Complete Health Care",
+        "description": "Whether you suffer from hypertension, diabetes, coronary artery disease, or more, you'll get the care you need."
+      },
+      "services": [
+        "Diabetes management and monitoring",
+        "Hypertension (high blood pressure) treatment",
+        "Coronary artery disease care",
+        "Renal (kidney) disease management",
+        "Endocrine disorders",
+        "Overall wellness programs",
+        "Geriatric medicine / elderly care",
+        "Preventive screenings and checkups",
+        "Medicare wellness visits"
+      ]
+    },
+    {
+      "category": "Pulmonology & Critical Care",
+      "icon": "lungs",
+      "services": [
+        "Obstructive Lung Disease treatment",
+        "Pleural Effusion management",
+        "Respiratory Failure care",
+        "Sleep Medicine",
+        "Critical care medicine"
+      ]
+    },
+    {
+      "category": "Chiropractic Services",
+      "icon": "spine",
+      "homepage_box": {
+        "title": "Chiropractic Services",
+        "description": "Dr. Amar Patel's chiropractic experience can help alleviate your chronic or intermittent pain fast."
+      },
+      "services": [
+        "Chiropractic adjustments (Diversified and Activator methods)",
+        "Physical therapy",
+        "Therapeutic massage",
+        "Non-surgical spinal decompression",
+        "Muscle stimulation",
+        "Myofascial release",
+        "Ultrasound therapy",
+        "Trigger point therapy",
+        "Back pain and chronic pain relief"
+      ]
+    },
+    {
+      "category": "Cosmetic / Medspa Services",
+      "icon": "syringe",
+      "services": [
+        "Botox",
+        "Dysport",
+        "Fillers"
+      ]
+    },
+    {
+      "category": "Availability & Access",
+      "homepage_box": {
+        "title": "24/7 Availability",
+        "description": "When you need help, we're available 24/7 to take your call. Your call will be returned promptly so you know what steps to take next."
+      }
+    }
+  ]
+}

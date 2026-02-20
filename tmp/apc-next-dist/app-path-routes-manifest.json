@@ -1,0 +1,19 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about-us/page": "/about-us",
+  "/api/contact/route": "/api/contact",
+  "/contact/page": "/contact",
+  "/doctors-blog/[slug]/page": "/doctors-blog/[slug]",
+  "/doctors-blog/page": "/doctors-blog",
+  "/favicon.ico/route": "/favicon.ico",
+  "/insurance/page": "/insurance",
+  "/locations/page": "/locations",
+  "/meet-our-staff/[id]/page": "/meet-our-staff/[id]",
+  "/meet-our-staff/page": "/meet-our-staff",
+  "/page": "/",
+  "/patient-forms/page": "/patient-forms",
+  "/robots.txt/route": "/robots.txt",
+  "/services/page": "/services",
+  "/sitemap.xml/route": "/sitemap.xml"
+}

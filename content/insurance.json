@@ -1,0 +1,74 @@
+{
+  "homepage_box": {
+    "title": "Insurance Accepted",
+    "description": "We accept over 20 insurance plans so all our patients can get the care they need. Call to find out if your plan is accepted."
+  },
+  "insurance_plans": {
+    "Aetna": [
+      "Aetna Choice POS II",
+      "Aetna Elect Choice EPO Open Access",
+      "Aetna HMO",
+      "Aetna Innovation Health",
+      "Aetna Premier Care Network Plus",
+      "Aetna Managed Choice POS Open Access",
+      "Aetna Open Choice PPO",
+      "Aetna Signature Administrators PPO",
+      "Aexcel PPO"
+    ],
+    "Blue Cross Blue Shield / Florida Blue": [
+      "BCBS Blue Card PPO",
+      "BCBS FL Blue BlueCare HMO",
+      "BCBS FL Blue BlueOptions",
+      "BCBS FL Blue Choice",
+      "BCBS FL Blue SimplyBlue",
+      "BCBS FL Preferred Patient Care PPO",
+      "BCBS FL myBlue",
+      "Florida Blue BlueSelect",
+      "BCBSA Blue Card High Performance Network"
+    ],
+    "Cigna": [
+      "CIGNA HMO",
+      "CIGNA Open Access Plus",
+      "CIGNA PPO"
+    ],
+    "Humana": [
+      "Humana / ChoiceCare Network PPO"
+    ],
+    "AvMed": [
+      "AvMed Empower",
+      "AvMed Engage",
+      "AvMed Choice"
+    ],
+    "Coventry": [
+      "Coventry FL Employer Group HMO Open Access",
+      "Coventry FL Employer Group PPO"
+    ],
+    "Government": [
+      "Medicare",
+      "Medicaid",
+      "Tricare"
+    ],
+    "Other": [
+      "First Health PPO",
+      "CarePlus",
+      "Citrus",
+      "GHI",
+      "Healthease",
+      "Partner Care",
+      "Pinellas County Health Services",
+      "Physicians United Plan",
+      "Florida First",
+      "First Administrators",
+      "WellCare",
+      "UnitedHealthcare",
+      "Freedom Health"
+    ]
+  },
+  "logos": {
+    "Coventry": "../assets/insurance-logos/coventry-health-care.png",
+    "Freedom Health": "../assets/insurance-logos/freedom-health.png",
+    "Humana": "../assets/insurance-logos/humana.png",
+    "UnitedHealthcare": "../assets/insurance-logos/unitedhealthcare.png",
+    "WellCare": "../assets/insurance-logos/wellcare.png"
+  }
+}

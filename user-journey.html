@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Journey Map — American Primary Care Website Rebuild</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-600: #0066CC;
+      --blue-700: #0052A3;
+      --blue-50:  #EBF4FF;
+      --blue-100: #C3DEFE;
+      --red-500:  #E63946;
+      --red-50:   #FEF2F2;
+      --green-500: #10B981;
+      --green-50:  #ECFDF5;
+      --amber-500: #F59E0B;
+      --amber-50:  #FFFBEB;
+      --purple-500: #8B5CF6;
+      --purple-50:  #F5F3FF;
+      --gray-50:  #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -1px rgba(0,0,0,.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.08), 0 4px 6px -2px rgba(0,0,0,.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── Sticky Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--gray-900);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 52px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+    nav .brand {
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .04em;
+      margin-right: 32px;
+      white-space: nowrap;
+    }
+    nav .brand span { color: var(--blue-600); }
+    nav a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 0 12px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; border-color: var(--blue-600); }
+
+    /* ── Page Header ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-600) 50%, #0077E6 100%);
+      padding: 56px 40px 40px;
+      color: #fff;
+    }
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      opacity: .85;
+      font-size: 15px;
+      max-width: 680px;
+      line-height: 1.7;
+    }
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .meta-chip {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* ── Section Header ── */
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+    .section-header p {
+      color: var(--gray-500);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .card-header h3 { font-size: 16px; font-weight: 700; color: var(--gray-900); }
+    .card-header p  { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
+    .card-body { padding: 24px; }
+
+    /* ── Persona Cards ── */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .persona-card {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .persona-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+    .persona-card h3 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .persona-card .persona-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 12px;
+    }
+    .persona-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; margin-bottom: 12px; }
+    .persona-goals h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--gray-400); margin-bottom: 6px; }
+    .persona-goals ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .persona-goals li { font-size: 12px; color: var(--gray-600); display: flex; align-items: flex-start; gap: 6px; }
+    .persona-goals li::before { content: '→'; color: var(--blue-600); font-weight: 700; flex-shrink: 0; }
+    .concern-chip {
+      display: inline-block;
+      background: var(--red-50);
+      color: var(--red-500);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+
+    /* ── Journey Flow ── */
+    .journey-section {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .journey-header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .journey-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .journey-header h2 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 2px; }
+    .journey-header p  { font-size: 12px; color: var(--gray-500); }
+
+    /* Steps Timeline */
+    .steps-wrapper {
+      padding: 28px;
+      overflow-x: auto;
+    }
+    .steps-row {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      min-width: max-content;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 160px;
+    }
+    .step-connector {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      right: -50%;
+      height: 2px;
+      background: var(--gray-200);
+      z-index: 0;
+    }
+    .step:last-child .step-connector { display: none; }
+    .step-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      border: 2px solid;
+      background: #fff;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    .step-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--gray-500);
+    }
+    .step-desc {
+      font-size: 11px;
+      color: var(--gray-400);
+      text-align: center;
+      margin-top: 4px;
+      line-height: 1.4;
+      max-width: 140px;
+    }
+    .step-device {
+      font-size: 9px;
+      color: var(--gray-300);
+      text-align: center;
+      margin-top: 3px;
+    }
+
+    /* Emotion Bar */
+    .emotion-row {
+      padding: 0 28px 8px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .emotion-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      white-space: nowrap;
+      width: 90px;
+      flex-shrink: 0;
+    }
+    .emotion-track {
+      display: flex;
+      gap: 0;
+      flex: 1;
+      height: 40px;
+      align-items: center;
+    }
+    .emotion-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 160px;
+      gap: 4px;
+    }
+    .emotion-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+    .emotion-text { font-size: 10px; color: var(--gray-400); text-align: center; }
+
+    /* SVG sparkline */
+    .sparkline-wrap {
+      padding: 0 28px;
+      margin-bottom: 4px;
+    }
+    .sparkline-wrap svg { width: 100%; height: 60px; }
+
+    /* Pain points + Opportunities */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--gray-100);
+    }
+    .insight-col {
+      padding: 20px 28px;
+    }
+    .insight-col:first-child { border-right: 1px solid var(--gray-100); }
+    .insight-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .insight-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .insight-col li { font-size: 12px; color: var(--gray-600); display: flex; gap: 8px; line-height: 1.5; }
+    .insight-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+    /* CTA Strategy Table */
+    .cta-table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    table thead th {
+      background: var(--gray-50);
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--gray-400);
+      border-bottom: 2px solid var(--gray-200);
+      white-space: nowrap;
+    }
+    table tbody tr { border-bottom: 1px solid var(--gray-100); }
+    table tbody tr:hover { background: var(--gray-50); }
+    table tbody td { padding: 12px 16px; vertical-align: top; line-height: 1.5; }
+    table tbody td:first-child { font-weight: 600; color: var(--gray-800); }
+
+    /* Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .tag-primary  { background: var(--blue-50);   color: var(--blue-600); }
+    .tag-red      { background: var(--red-50);    color: var(--red-500); }
+    .tag-green    { background: var(--green-50);  color: var(--green-500); }
+    .tag-amber    { background: var(--amber-50);  color: var(--amber-500); }
+    .tag-purple   { background: var(--purple-50); color: var(--purple-500); }
+
+    /* Touchpoint Priority section */
+    .priority-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .priority-card {
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid;
+    }
+    .priority-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .priority-card p  { font-size: 12px; line-height: 1.6; }
+    .priority-card .priority-badge {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+    .priority-high   { background: var(--red-50);    border-color: #FECACA; color: var(--gray-800); }
+    .priority-high .priority-badge   { color: var(--red-500); }
+    .priority-medium { background: var(--amber-50);  border-color: #FDE68A; color: var(--gray-800); }
+    .priority-medium .priority-badge { color: var(--amber-500); }
+    .priority-low    { background: var(--blue-50);   border-color: var(--blue-100); color: var(--gray-800); }
+    .priority-low .priority-badge    { color: var(--blue-600); }
+
+    /* Drop-off section */
+    .funnel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-200);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .funnel-step {
+      background: #fff;
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .funnel-step .pct { font-size: 22px; font-weight: 800; color: var(--blue-600); }
+    .funnel-step .page { font-size: 11px; font-weight: 600; color: var(--gray-700); margin: 4px 0 2px; }
+    .funnel-step .note { font-size: 11px; color: var(--gray-400); }
+    .funnel-step .drop { font-size: 11px; color: var(--red-500); font-weight: 600; margin-top: 4px; }
+
+    /* Key Metrics */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .metric-card {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .metric-card .metric-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--blue-600);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .metric-card .metric-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--gray-400);
+      margin-bottom: 8px;
+    }
+    .metric-card .metric-note { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+
+    /* Color legend */
+    .legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray-500); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* divider */
+    .divider { border: 0; border-top: 1px solid var(--gray-200); margin: 4px 0; }
+
+    @media (max-width: 900px) {
+      .personas-grid, .priority-grid, .metrics-row { grid-template-columns: 1fr; }
+      .funnel-grid { grid-template-columns: repeat(2, 1fr); }
+      .insights-grid { grid-template-columns: 1fr; }
+      .insight-col:first-child { border-right: 0; border-bottom: 1px solid var(--gray-100); }
+      nav a { display: none; }
+      nav a:nth-child(-n+4) { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="brand">APC <span>//</span> User Journey</div>
+  <a href="#personas">Personas</a>
+  <a href="#journey1">New Patient</a>
+  <a href="#journey2">Returning</a>
+  <a href="#journey3">Insurance</a>
+  <a href="#cta-strategy">CTA Strategy</a>
+  <a href="#funnel">Funnel</a>
+  <a href="#metrics">KPIs</a>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <h1>User Journey Map</h1>
+  <p>Patient flows, touchpoints, emotional states, drop-off risks, and CTA placement strategy for the American Primary Care website rebuild. Three primary journeys mapped across all pages.</p>
+  <div class="meta-row">
+    <div class="meta-chip">🏥 American Primary Care</div>
+    <div class="meta-chip">🗺 3 Patient Journeys</div>
+    <div class="meta-chip">📄 11 Pages Mapped</div>
+    <div class="meta-chip">📱 Mobile-First Flows</div>
+    <div class="meta-chip">📅 Feb 2026</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══════════════════════════════════
+       SECTION 0: KEY METRICS
+  ═══════════════════════════════════ -->
+  <section id="metrics">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--blue-50)">📊</div>
+      <div>
+        <h2>Goals & Success Metrics</h2>
+        <p>What the rebuilt website must achieve for American Primary Care</p>
+      </div>
+    </div>
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-label">Primary Goal</div>
+        <div class="metric-value" style="font-size:20px;line-height:1.3">New Patient Calls</div>
+        <div class="metric-note">Every page should funnel toward a call to <strong>(727) 771-7200</strong> or an appointment request form</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Target Conversion Rate</div>
+        <div class="metric-value">4–8%</div>
+        <div class="metric-note">Visitors who initiate contact (call, form, or directions click) — typical for medical practice sites</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Primary Traffic Source</div>
+        <div class="metric-value">68%</div>
+        <div class="metric-note">Estimated mobile traffic — Tampa Bay area patients searching on phone. Mobile must be flawless.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Avg. Pages per Session</div>
+        <div class="metric-value">2.4</div>
+        <div class="metric-note">Target. Users should visit Home → Staff or Services → Contact without dead-end pages.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 1: PERSONAS
+  ═══════════════════════════════════ -->
+  <section id="personas">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--purple-50)">👥</div>
+      <div>
+        <h2>Patient Personas</h2>
+        <p>Three primary user types with distinct goals, entry points, and conversion paths</p>
+      </div>
+    </div>
+    <div class="personas-grid">
+
+      <!-- Persona 1 -->
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:var(--blue-50)">🔍</div>
+        <div class="persona-label" style="color:var(--blue-600)">Journey 1 · New Patient</div>
+        <h3>Maria, 58</h3>
+        <p>Recently moved to Palm Harbor area. Looking for a new primary care doctor who accepts Medicare. Searches Google on her iPhone after seeing APC on a neighbor's recommendation.</p>
+        <div class="concern-chip">Concern: "Does my insurance work here?"</div>
+        <div class="persona-goals" style="margin-top:14px">
+          <h4>Goals</h4>
+          <ul>
+            <li>Confirm Medicare is accepted</li>
+            <li>Read about the doctors</li>
+            <li>Find the Palm Harbor office address</li>
+            <li>Call or request an appointment</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Persona 2 -->
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:var(--green-50)">🔄</div>
+        <div class="persona-label" style="color:var(--green-500)">Journey 2 · Returning Patient</div>
+        <h3>Gerald, 71</h3>
+        <p>Established patient of Dr. Shah. Visits the site to look up office hours, get the phone number, or find directions to a different APC location than usual.</p>
+        <div class="concern-chip">Concern: "What are the hours again?"</div>
+        <div class="persona-goals" style="margin-top:14px">
+          <h4>Goals</h4>
+          <ul>
+            <li>Find office phone number fast</li>
+            <li>Confirm today's hours</li>
+            <li>Get directions to a specific office</li>
+            <li>Access patient portal</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Persona 3 -->
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:var(--amber-50)">🛡</div>
+        <div class="persona-label" style="color:var(--amber-500)">Journey 3 · Insurance Checker</div>
+        <h3>David, 45</h3>
+        <p>Self-referred from Google after back pain. His wife has been a patient. He has Cigna PPO through his employer and wants to confirm APC accepts it before making an appointment.</p>
+        <div class="concern-chip">Concern: "Will this be covered?"</div>
+        <div class="persona-goals" style="margin-top:14px">
+          <h4>Goals</h4>
+          <ul>
+            <li>Verify Cigna PPO is in-network</li>
+            <li>Learn about chiropractic services</li>
+            <li>See Dr. Patel's credentials</li>
+            <li>Book a first appointment</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       JOURNEY 1: NEW PATIENT
+  ═══════════════════════════════════ -->
+  <section id="journey1">
+    <div class="journey-section">
+      <div class="journey-header">
+        <div class="journey-badge" style="background:var(--blue-600)">1</div>
+        <div>
+          <h2>New Patient Discovery → Booking</h2>
+          <p>Maria's path from Google search to confirmed appointment — the highest-value conversion flow</p>
+        </div>
+        <div style="margin-left:auto">
+          <span class="tag tag-primary">🎯 Primary Flow</span>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="steps-wrapper">
+        <div class="steps-row">
+
+          <!-- Step 1 -->
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--blue-600);color:var(--blue-600)">🔍</div>
+            <div class="step-label" style="color:var(--blue-600)">Google Search</div>
+            <div class="step-desc">"primary care doctor palm harbor medicare"</div>
+            <div class="step-device">📱 iPhone · Google Maps + Web</div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--blue-600);color:var(--blue-600)">🏠</div>
+            <div class="step-label" style="color:var(--blue-600)">Home Page</div>
+            <div class="step-desc">Hero, service overview, phone number</div>
+            <div class="step-device">📱 Arrives from SERP click</div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--purple-500);color:var(--purple-500)">👨‍⚕️</div>
+            <div class="step-label" style="color:var(--purple-500)">Meet Our Staff</div>
+            <div class="step-desc">Browses provider grid, clicks Dr. Shah</div>
+            <div class="step-device">📱 Nav click</div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--purple-500);color:var(--purple-500)">📋</div>
+            <div class="step-label" style="color:var(--purple-500)">Provider Detail</div>
+            <div class="step-desc">Reads bio, certifications, hospitals</div>
+            <div class="step-device">📱 From staff grid</div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--amber-500);color:var(--amber-500)">🛡</div>
+            <div class="step-label" style="color:var(--amber-500)">Insurance</div>
+            <div class="step-desc">Scans carrier list, confirms Medicare ✓</div>
+            <div class="step-device">📱 Nav or CTA link</div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--green-500);color:var(--green-500)">📞</div>
+            <div class="step-label" style="color:var(--green-500)">Contact / Call</div>
+            <div class="step-desc">Taps phone number or submits form</div>
+            <div class="step-device">📱 Tap-to-call or form</div>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="step">
+            <div class="step-circle" style="border-color:var(--green-500);background:var(--green-500);color:#fff">✓</div>
+            <div class="step-label" style="color:var(--green-500)">Appointment</div>
+            <div class="step-desc">New patient booked — conversion complete</div>
+            <div class="step-device">🎉 Goal achieved</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Emotion Curve (SVG) -->
+      <div style="padding:4px 28px 0; display:flex; align-items:center; gap:16px;">
+        <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em;width:90px;flex-shrink:0;">Confidence</div>
+        <div style="flex:1">
+          <svg viewBox="0 0 700 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:54px;">
+            <!-- Neutral baseline -->
+            <line x1="0" y1="30" x2="700" y2="30" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Emotion curve -->
+            <polyline
+              points="50,40 150,28 250,22 350,30 450,16 550,10 650,8"
+              stroke="#0066CC" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Fill area under curve -->
+            <polygon
+              points="50,40 150,28 250,22 350,30 450,16 550,10 650,8 650,54 50,54"
+              fill="url(#grad1)" opacity="0.15"/>
+            <!-- Dots -->
+            <circle cx="50"  cy="40" r="5" fill="#0066CC"/>
+            <circle cx="150" cy="28" r="5" fill="#0066CC"/>
+            <circle cx="250" cy="22" r="5" fill="#0066CC"/>
+            <circle cx="350" cy="30" r="5" fill="#F59E0B"/><!-- slight dip: insurance anxiety -->
+            <circle cx="450" cy="16" r="5" fill="#0066CC"/>
+            <circle cx="550" cy="10" r="5" fill="#10B981"/>
+            <circle cx="650" cy="8"  r="5" fill="#10B981"/>
+            <!-- Labels -->
+            <text x="50"  y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Curious</text>
+            <text x="150" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Interested</text>
+            <text x="250" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Reassured</text>
+            <text x="350" y="56" font-size="8" fill="#F59E0B" text-anchor="middle">Anxious</text>
+            <text x="450" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Relieved</text>
+            <text x="550" y="56" font-size="8" fill="#10B981" text-anchor="middle">Confident</text>
+            <text x="650" y="56" font-size="8" fill="#10B981" text-anchor="middle">Committed</text>
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0066CC"/>
+                <stop offset="100%" stop-color="#0066CC" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="insights-grid">
+        <div class="insight-col">
+          <h4><span>🚧</span> Pain Points & Drop-Off Risks</h4>
+          <ul>
+            <li><span class="insight-icon">⚡</span>Page load time on mobile — if &gt;3s, 53% of visitors bounce before the hero loads</li>
+            <li><span class="insight-icon">📋</span>No visible insurance info on homepage — Maria may bounce without scrolling deep</li>
+            <li><span class="insight-icon">📞</span>Phone number buried in footer — tap-to-call must be prominent in sticky header on mobile</li>
+            <li><span class="insight-icon">👩‍⚕️</span>No photo for Dr. Bhaskar — missing photo reduces trust vs. Dr. Shah who has one</li>
+            <li><span class="insight-icon">📝</span>If contact form is too long (5+ fields), form abandonment increases significantly</li>
+          </ul>
+        </div>
+        <div class="insight-col">
+          <h4><span>💡</span> Design Opportunities</h4>
+          <ul>
+            <li><span class="insight-icon">✨</span>Sticky mobile header with tap-to-call button visible on every page</li>
+            <li><span class="insight-icon">✨</span>Insurance logos on homepage hero or service box section to immediately reassure</li>
+            <li><span class="insight-icon">✨</span>Provider cards link to Insurance page with anchor — "Accepted by Medicare & 20+ plans"</li>
+            <li><span class="insight-icon">✨</span>Short 3-field appointment form embedded on homepage below the fold</li>
+            <li><span class="insight-icon">✨</span>Google Maps thumbnail on Locations page with one-tap directions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       JOURNEY 2: RETURNING PATIENT
+  ═══════════════════════════════════ -->
+  <section id="journey2">
+    <div class="journey-section">
+      <div class="journey-header">
+        <div class="journey-badge" style="background:var(--green-500)">2</div>
+        <div>
+          <h2>Returning Patient — Fast Info Lookup</h2>
+          <p>Gerald needs hours, a phone number, or directions — fast. He has no patience for buried information.</p>
+        </div>
+        <div style="margin-left:auto">
+          <span class="tag tag-green">⚡ Speed Critical</span>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="steps-wrapper">
+        <div class="steps-row">
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--green-500);color:var(--green-500)">🔍</div>
+            <div class="step-label" style="color:var(--green-500)">Direct Search</div>
+            <div class="step-desc">"american primary care palm harbor" or types URL</div>
+            <div class="step-device">📱 or 🖥️ Google</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--green-500);color:var(--green-500)">🏠</div>
+            <div class="step-label" style="color:var(--green-500)">Home Page</div>
+            <div class="step-desc">Scans for phone # or hours. Often finds answer here.</div>
+            <div class="step-device">📱 Above the fold</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--green-500);color:var(--green-500)">📍</div>
+            <div class="step-label" style="color:var(--green-500)">Locations</div>
+            <div class="step-desc">Finds his specific office, hours, and address</div>
+            <div class="step-device">📱 Nav click</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--blue-600);color:var(--blue-600)">🗺</div>
+            <div class="step-label" style="color:var(--blue-600)">Maps / Directions</div>
+            <div class="step-desc">Taps "Get Directions" → Google Maps</div>
+            <div class="step-device">📱 External app</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--blue-600);color:var(--blue-600)">🔑</div>
+            <div class="step-label" style="color:var(--blue-600)">Patient Portal</div>
+            <div class="step-desc">Some users look for portal link or MyChart</div>
+            <div class="step-device">📱 or 🖥️</div>
+          </div>
+
+          <div class="step">
+            <div class="step-circle" style="border-color:var(--green-500);background:var(--green-500);color:#fff">✓</div>
+            <div class="step-label" style="color:var(--green-500)">Task Complete</div>
+            <div class="step-desc">Got what they needed in &lt;60 seconds</div>
+            <div class="step-device">🎯 Satisfied patient</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Emotion curve -->
+      <div style="padding:4px 28px 0; display:flex; align-items:center; gap:16px;">
+        <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em;width:90px;flex-shrink:0;">Patience</div>
+        <div style="flex:1">
+          <svg viewBox="0 0 600 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:54px;">
+            <line x1="0" y1="30" x2="600" y2="30" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- patience DROPS fast if can't find info -->
+            <polyline points="50,20 150,22 250,28 350,12 450,10 550,8" stroke="#10B981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="50,20 150,22 250,28 350,12 450,10 550,8 550,54 50,54" fill="#10B981" opacity="0.1"/>
+            <circle cx="50"  cy="20" r="5" fill="#10B981"/>
+            <circle cx="150" cy="22" r="5" fill="#10B981"/>
+            <circle cx="250" cy="28" r="5" fill="#F59E0B"/><!-- amber: mild frustration if buried info -->
+            <circle cx="350" cy="12" r="5" fill="#10B981"/>
+            <circle cx="450" cy="10" r="5" fill="#10B981"/>
+            <circle cx="550" cy="8"  r="5" fill="#10B981"/>
+            <text x="50"  y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Efficient</text>
+            <text x="150" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Scanning</text>
+            <text x="250" y="56" font-size="8" fill="#F59E0B" text-anchor="middle">Impatient</text>
+            <text x="350" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Found it</text>
+            <text x="450" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Navigating</text>
+            <text x="550" y="56" font-size="8" fill="#10B981" text-anchor="middle">Done ✓</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-col">
+          <h4><span>🚧</span> Pain Points</h4>
+          <ul>
+            <li><span class="insight-icon">⏱</span>If phone number isn't in the top 1/3 of the homepage, returning patients bounce to Google Maps instead</li>
+            <li><span class="insight-icon">🏢</span>4 locations — if hours aren't per-office, patients may show up at the wrong time</li>
+            <li><span class="insight-icon">🔑</span>No patient portal link is a major frustration point — needs prominent placement</li>
+          </ul>
+        </div>
+        <div class="insight-col">
+          <h4><span>💡</span> Design Solutions</h4>
+          <ul>
+            <li><span class="insight-icon">✨</span>Phone number in sticky header with tap-to-call — visible at all times on mobile</li>
+            <li><span class="insight-icon">✨</span>Each location card on Locations page has its own hours, phone, and "Get Directions" CTA</li>
+            <li><span class="insight-icon">✨</span>Patient Portal button in main navigation (top right) and in footer</li>
+            <li><span class="insight-icon">✨</span>Structured data (LocalBusiness JSON-LD) so hours appear directly in Google search results</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       JOURNEY 3: INSURANCE CHECKER
+  ═══════════════════════════════════ -->
+  <section id="journey3">
+    <div class="journey-section">
+      <div class="journey-header">
+        <div class="journey-badge" style="background:var(--amber-500)">3</div>
+        <div>
+          <h2>Insurance Verification → First Appointment</h2>
+          <p>David needs insurance confirmation before committing. Chiropractic referral path — high anxiety, high intent.</p>
+        </div>
+        <div style="margin-left:auto">
+          <span class="tag tag-amber">🛡 Trust-Heavy</span>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="steps-wrapper">
+        <div class="steps-row">
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--amber-500);color:var(--amber-500)">🔍</div>
+            <div class="step-label" style="color:var(--amber-500)">Google Search</div>
+            <div class="step-desc">"chiropractor palm harbor cigna"</div>
+            <div class="step-device">📱 Mobile Google</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--amber-500);color:var(--amber-500)">🏠</div>
+            <div class="step-label" style="color:var(--amber-500)">Home Page</div>
+            <div class="step-desc">Scans for insurance reassurance, "20+ plans"</div>
+            <div class="step-device">📱 SERP click</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--amber-500);color:var(--amber-500)">🛡</div>
+            <div class="step-label" style="color:var(--amber-500)">Insurance Page</div>
+            <div class="step-desc">Finds Cigna section, sees PPO listed ✓</div>
+            <div class="step-device">📱 Nav → Insurance</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--purple-500);color:var(--purple-500)">🦴</div>
+            <div class="step-label" style="color:var(--purple-500)">Services Page</div>
+            <div class="step-desc">Reads chiropractic services, treatment approach</div>
+            <div class="step-device">📱 CTA link</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--purple-500);color:var(--purple-500)">👨‍⚕️</div>
+            <div class="step-label" style="color:var(--purple-500)">Dr. Patel Profile</div>
+            <div class="step-desc">Reads bio, credentials, methods, patient quote</div>
+            <div class="step-device">📱 Staff page</div>
+          </div>
+
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-circle" style="border-color:var(--green-500);color:var(--green-500)">📞</div>
+            <div class="step-label" style="color:var(--green-500)">Contact / Call</div>
+            <div class="step-desc">Calls office or submits appointment request</div>
+            <div class="step-device">📱 Tap-to-call</div>
+          </div>
+
+          <div class="step">
+            <div class="step-circle" style="border-color:var(--green-500);background:var(--green-500);color:#fff">✓</div>
+            <div class="step-label" style="color:var(--green-500)">Booked</div>
+            <div class="step-desc">First chiro appointment scheduled</div>
+            <div class="step-device">🎉 Converted</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Emotion curve -->
+      <div style="padding:4px 28px 0; display:flex; align-items:center; gap:16px;">
+        <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em;width:90px;flex-shrink:0;">Anxiety Level</div>
+        <div style="flex:1">
+          <svg viewBox="0 0 700 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:54px;">
+            <line x1="0" y1="30" x2="700" y2="30" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Anxiety: HIGH at start, drops when insurance confirmed, rises slightly (is doc good?), drops again -->
+            <polyline points="50,12 150,16 250,38 350,24 450,20 550,28 650,42" stroke="#E63946" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="50,12 150,16 250,38 350,24 450,20 550,28 650,42 650,54 50,54" fill="#E63946" opacity="0.07"/>
+            <circle cx="50"  cy="12" r="5" fill="#E63946"/>
+            <circle cx="150" cy="16" r="5" fill="#E63946"/>
+            <circle cx="250" cy="38" r="5" fill="#10B981"/><!-- insurance confirmed — relief -->
+            <circle cx="350" cy="24" r="5" fill="#F59E0B"/>
+            <circle cx="450" cy="20" r="5" fill="#F59E0B"/>
+            <circle cx="550" cy="28" r="5" fill="#F59E0B"/>
+            <circle cx="650" cy="42" r="5" fill="#10B981"/><!-- booked — low anxiety -->
+            <!-- Invert: lower = less anxiety -->
+            <text x="50"  y="56" font-size="8" fill="#E63946" text-anchor="middle">Uncertain</text>
+            <text x="150" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Searching</text>
+            <text x="250" y="56" font-size="8" fill="#10B981" text-anchor="middle">Relieved ✓</text>
+            <text x="350" y="56" font-size="8" fill="#F59E0B" text-anchor="middle">Evaluating</text>
+            <text x="450" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Researching</text>
+            <text x="550" y="56" font-size="8" fill="#9CA3AF" text-anchor="middle">Building Trust</text>
+            <text x="650" y="56" font-size="8" fill="#10B981" text-anchor="middle">Committed</text>
+          </svg>
+        </div>
+      </div>
+      <div style="padding:0 28px 8px;font-size:11px;color:var(--gray-400);">↑ Higher line = more anxiety (lower is better). The big drop at step 3 is when insurance is confirmed — critical moment.</div>
+
+      <div class="insights-grid">
+        <div class="insight-col">
+          <h4><span>🚧</span> Pain Points</h4>
+          <ul>
+            <li><span class="insight-icon">📋</span>If insurance page requires scrolling through an alphabetical wall of text to find Cigna, David may assume it's not there and leave</li>
+            <li><span class="insight-icon">🩺</span>No mention of chiropractic being insurance-covered on the services page — he may assume it's cash-pay only</li>
+            <li><span class="insight-icon">⭐</span>Lack of patient testimonials / reviews on Dr. Patel's profile increases uncertainty</li>
+            <li><span class="insight-icon">📞</span>If the only CTA after insurance confirmation is "Call us," some users prefer online forms</li>
+          </ul>
+        </div>
+        <div class="insight-col">
+          <h4><span>💡</span> Design Solutions</h4>
+          <ul>
+            <li><span class="insight-icon">✨</span>Insurance page: accordion by carrier + search/filter box to find "Cigna" instantly</li>
+            <li><span class="insight-icon">✨</span>Services page: note "Most services covered by major insurance. Call to verify." near chiro section</li>
+            <li><span class="insight-icon">✨</span>Provider detail page: include patient quote/review prominently (Dr. Patel already has one)</li>
+            <li><span class="insight-icon">✨</span>Dual CTA on Insurance page: "📞 Call to Verify" + "📝 Request Appointment Online"</li>
+            <li><span class="insight-icon">✨</span>Insurance → Services cross-link: "Chiropractic services →" at bottom of insurance card</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CTA STRATEGY BY PAGE
+  ═══════════════════════════════════ -->
+  <section id="cta-strategy">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--red-50)">🎯</div>
+      <div>
+        <h2>CTA Placement Strategy — Page by Page</h2>
+        <p>Every page has a primary action, secondary action, and intent signal to capture the right user at the right moment</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="cta-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>User Intent</th>
+              <th>Primary CTA</th>
+              <th>Secondary CTA</th>
+              <th>Placement</th>
+              <th>Journey</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Home</td>
+              <td>Discovery / Evaluation</td>
+              <td>
+                <span class="tag tag-primary">📞 Call (727) 771-7200</span>
+              </td>
+              <td><span class="tag tag-green">📝 Request Appointment</span></td>
+              <td>Hero + sticky mobile header + mid-page CTA band</td>
+              <td><span class="tag tag-primary">1</span> <span class="tag tag-green">2</span></td>
+            </tr>
+            <tr>
+              <td>About Us</td>
+              <td>Trust Building</td>
+              <td><span class="tag tag-primary">👨‍⚕️ Meet Our Doctors</span></td>
+              <td><span class="tag tag-green">📞 Call Us</span></td>
+              <td>End of page after history / mission section</td>
+              <td><span class="tag tag-primary">1</span></td>
+            </tr>
+            <tr>
+              <td>Meet Our Staff</td>
+              <td>Provider Research</td>
+              <td><span class="tag tag-purple">📋 View Full Profile</span></td>
+              <td><span class="tag tag-green">📞 Call to Schedule</span></td>
+              <td>Each provider card + sticky bottom banner on mobile</td>
+              <td><span class="tag tag-primary">1</span> <span class="tag tag-amber">3</span></td>
+            </tr>
+            <tr>
+              <td>Provider Detail</td>
+              <td>Deep Evaluation / Decision</td>
+              <td><span class="tag tag-green">📝 Request Appointment</span></td>
+              <td><span class="tag tag-primary">🛡 Check Insurance</span></td>
+              <td>Below photo + after bio + sticky footer on mobile</td>
+              <td><span class="tag tag-primary">1</span> <span class="tag tag-amber">3</span></td>
+            </tr>
+            <tr>
+              <td>Services</td>
+              <td>Service Discovery</td>
+              <td><span class="tag tag-primary">📞 Call Us</span></td>
+              <td><span class="tag tag-amber">🛡 View Insurance</span></td>
+              <td>After each service category card</td>
+              <td><span class="tag tag-primary">1</span> <span class="tag tag-amber">3</span></td>
+            </tr>
+            <tr>
+              <td>Locations</td>
+              <td>Practical Info Lookup</td>
+              <td><span class="tag tag-green">🗺 Get Directions</span></td>
+              <td><span class="tag tag-primary">📞 Call This Office</span></td>
+              <td>Each location card — two buttons visible without scrolling</td>
+              <td><span class="tag tag-green">2</span> <span class="tag tag-amber">3</span></td>
+            </tr>
+            <tr>
+              <td>Insurance</td>
+              <td>Eligibility Verification</td>
+              <td><span class="tag tag-primary">📞 Call to Verify Plan</span></td>
+              <td><span class="tag tag-green">📝 Request Appointment</span></td>
+              <td>Sticky banner at top + after carrier accordion + page bottom</td>
+              <td><span class="tag tag-primary">1</span> <span class="tag tag-amber">3</span></td>
+            </tr>
+            <tr>
+              <td>Patient Forms</td>
+              <td>Existing Patient Task</td>
+              <td><span class="tag tag-green">⬇ Download Form</span></td>
+              <td><span class="tag tag-primary">📞 Questions? Call Us</span></td>
+              <td>Each form as a download card with inline button</td>
+              <td><span class="tag tag-green">2</span></td>
+            </tr>
+            <tr>
+              <td>Doctor's Blog</td>
+              <td>Health Information / SEO</td>
+              <td><span class="tag tag-primary">📞 Schedule a Checkup</span></td>
+              <td><span class="tag tag-green">📝 Contact Us</span></td>
+              <td>End of each article + sidebar on desktop</td>
+              <td><span class="tag tag-primary">1</span></td>
+            </tr>
+            <tr>
+              <td>Contact</td>
+              <td>Ready to Convert</td>
+              <td><span class="tag tag-green">📝 Submit Form</span></td>
+              <td><span class="tag tag-primary">📞 Prefer to Call?</span></td>
+              <td>Form is the page — reduce friction to minimum fields</td>
+              <td><span class="tag tag-primary">1</span> <span class="tag tag-amber">3</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CONVERSION FUNNEL
+  ═══════════════════════════════════ -->
+  <section id="funnel">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--amber-50)">📉</div>
+      <div>
+        <h2>Estimated Conversion Funnel</h2>
+        <p>Modeled drop-off rates for Journey 1 (New Patient). Targets for first 6 months post-launch.</p>
+      </div>
+    </div>
+
+    <div class="card" style="overflow:visible">
+      <div class="card-body">
+        <!-- Funnel visualization -->
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto;">
+          <!-- Step bars -->
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:110px;text-align:right;font-size:12px;font-weight:600;color:var(--gray-600)">Google Landing</div>
+            <div style="flex:1;position:relative;height:36px;background:var(--gray-100);border-radius:6px;overflow:hidden">
+              <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--blue-600),#0077E6);border-radius:6px;display:flex;align-items:center;padding:0 14px">
+                <span style="color:#fff;font-size:13px;font-weight:700">100% — ~1,000 visitors/mo (goal)</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:110px;text-align:right;font-size:12px;font-weight:600;color:var(--gray-600)">Explore ≥2 pages</div>
+            <div style="flex:1;position:relative;height:36px;background:var(--gray-100);border-radius:6px;overflow:hidden">
+              <div style="width:62%;height:100%;background:linear-gradient(90deg,#0052A3,var(--blue-600));border-radius:6px;display:flex;align-items:center;padding:0 14px">
+                <span style="color:#fff;font-size:13px;font-weight:700">62% — Engaged visitors</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:110px;text-align:right;font-size:12px;font-weight:600;color:var(--gray-600)">Insurance check</div>
+            <div style="flex:1;position:relative;height:36px;background:var(--gray-100);border-radius:6px;overflow:hidden">
+              <div style="width:38%;height:100%;background:var(--amber-500);border-radius:6px;display:flex;align-items:center;padding:0 14px">
+                <span style="color:#fff;font-size:13px;font-weight:700">38% — High-intent</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:110px;text-align:right;font-size:12px;font-weight:600;color:var(--gray-600)">Contact page / call</div>
+            <div style="flex:1;position:relative;height:36px;background:var(--gray-100);border-radius:6px;overflow:hidden">
+              <div style="width:18%;height:100%;background:var(--purple-500);border-radius:6px;display:flex;align-items:center;padding:0 14px">
+                <span style="color:#fff;font-size:13px;font-weight:700">18% — Ready to act</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:110px;text-align:right;font-size:12px;font-weight:600;color:var(--gray-600)">Appointment booked</div>
+            <div style="flex:1;position:relative;height:36px;background:var(--gray-100);border-radius:6px;overflow:hidden">
+              <div style="width:8%;height:100%;background:var(--green-500);border-radius:6px;display:flex;align-items:center;padding:0 14px">
+                <span style="color:#fff;font-size:13px;font-weight:700">6–8%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" style="margin:24px 0 16px">
+        <p style="font-size:12px;color:var(--gray-500);max-width:600px">6–8% overall conversion (visitor → appointment) is the industry benchmark for well-designed medical practice sites. Key lever: reducing drop-off between the Insurance page and Contact page via strong CTAs and minimal form friction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       TOUCHPOINT PRIORITY
+  ═══════════════════════════════════ -->
+  <section id="priority">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--green-50)">📌</div>
+      <div>
+        <h2>Implementation Priority — UI Touchpoints</h2>
+        <p>Which UI elements have the most impact across all three journeys</p>
+      </div>
+    </div>
+    <div class="priority-grid">
+      <div class="priority-card priority-high">
+        <div class="priority-badge">🔴 High Priority — Build First</div>
+        <h4>Sticky Mobile Header w/ Tap-to-Call</h4>
+        <p>Phone number must be one tap away at all times on mobile. Every journey relies on this. Even returning patients who already know the number will use it.</p>
+      </div>
+      <div class="priority-card priority-high">
+        <div class="priority-badge">🔴 High Priority</div>
+        <h4>Insurance Accordion + Search</h4>
+        <p>The moment David finds "Cigna PPO" in a clean, scannable accordion, his anxiety drops sharply. A wall of text causes abandonment. Use a searchable/filterable list.</p>
+      </div>
+      <div class="priority-card priority-high">
+        <div class="priority-badge">🔴 High Priority</div>
+        <h4>Provider Cards with Photos</h4>
+        <p>Trust is the #1 conversion driver in healthcare. Dr. Shah's and Dr. Patel's photos must be high-quality. Placeholder silhouette for others is preferable to missing photos.</p>
+      </div>
+      <div class="priority-card priority-medium">
+        <div class="priority-badge">🟡 Medium Priority</div>
+        <h4>Location Cards with Hours</h4>
+        <p>Per-location hours, phone, and one-tap directions. Returning patients (Journey 2) live and die by this page. Google Maps embed or static map with directions link.</p>
+      </div>
+      <div class="priority-card priority-medium">
+        <div class="priority-badge">🟡 Medium Priority</div>
+        <h4>Short Appointment Request Form</h4>
+        <p>3–4 fields maximum: Name, Phone, Preferred Provider, Message. Every additional field reduces submission rate ~10%. Available on Home, Contact, and Provider Detail pages.</p>
+      </div>
+      <div class="priority-card priority-low">
+        <div class="priority-badge">🔵 Standard Priority</div>
+        <h4>Blog Health Articles</h4>
+        <p>Primarily an SEO play. New patients may discover APC through health content (e.g., "diabetes management palm harbor"). Each post needs a "Schedule a checkup" CTA at end.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       MOBILE VS DESKTOP NOTES
+  ═══════════════════════════════════ -->
+  <section>
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--blue-50)">📱</div>
+      <div>
+        <h2>Mobile vs. Desktop Experience Notes</h2>
+        <p>Estimated 68% mobile traffic — design mobile-first, enhance for desktop</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="card">
+        <div class="card-header">
+          <div style="font-size:24px">📱</div>
+          <div><h3>Mobile (Primary)</h3><p>iPhone/Android, on the go, often while in pain or looking up info before calling</p></div>
+        </div>
+        <div class="card-body">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Sticky header with tap-to-call button (44px+ touch target)</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Hamburger nav with full-screen overlay menu</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Single-column layout — no sidebars</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Provider cards full-width, photo top, details below</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Insurance: accordion collapsed by default, max 1 open at a time</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Form inputs: 16px+ font size to prevent iOS zoom-in</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Sticky bottom CTA bar on key pages (Provider Detail, Services)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div style="font-size:24px">🖥️</div>
+          <div><h3>Desktop (Secondary)</h3><p>Office computer, researching thoroughly, comparing with other practices, spouse looking up for partner</p></div>
+        </div>
+        <div class="card-body">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Full navigation bar with hover dropdowns (no hamburger)</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Hero with large slider image (full-width) and text overlay</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> 3-column provider grid, 2-column service layout</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Insurance page: 2-3 column carrier grid with logos</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Blog: 3-column grid of article cards with images</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Contact page: 2-column (form left, contact info right)</li>
+            <li style="display:flex;gap:8px;font-size:13px;color:var(--gray-600)"><span style="color:var(--blue-600);font-weight:700;flex-shrink:0">→</span> Hover states on all interactive elements</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer note -->
+  <div style="text-align:center;padding:16px;color:var(--gray-300);font-size:12px">
+    American Primary Care · User Journey Map · Website Rebuild · February 2026 · For internal development use
+  </div>
+
+</main>
+</body>
+</html>
